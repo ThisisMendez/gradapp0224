@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CareerDevs Graduates</title>
+</head>
+<body>
+    <br>
+    <div class="containers"> 
+        <form onsubmit="addGraduate(event)">
+            <input type = "text" placeholder="Enter Grad" id="name"> 
+            <input type = "text" placeholder="Enter Role" id="role">
+            <input type = "text" placeholder="Enter Company" id="company">
+            <input type = "date" placeholder="Enter Date of Graduation" id=yearOfGraduation>
+            <button type="submit" name="action">Submit</button>
+        </form>
+        <br>
+        <button onclick = "showAllgraduates()"> Show All Graduates </button>
+        <button onclick = "removeGraduate()"> Delete Graduate </button>
+    </div>
+        <div id="results"></div>
+        <script src="script.js"></script>
+    
+</body>
+</html>
