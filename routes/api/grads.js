@@ -6,6 +6,15 @@ router.get('/test', (req, res) => {
     res.json({msg: "Works"})
 }); 
 
+router.get('/', async(req, res) => {
+    try { 
+        const grads = await Grad.find(); 
+        res.json(grads); 
+        } catch(err) { 
+            res.status(500).json({msg: err.message}); 
+        }
+}); 
+
 router.post('/', async(req, res) => { 
     console.log(req.body); 
     const grad = new Grad({ 
