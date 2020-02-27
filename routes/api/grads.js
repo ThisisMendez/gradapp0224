@@ -32,25 +32,18 @@ router.post('/', async(req, res) => {
 });
 
 router.post('/update/:id', async (req, res) => { 
-    Grad.findById(req.params.id)
-        .then(grad => { 
-            grad.name = req.body.name; 
-            grad.role = req.body.role; 
-            grad.company = req.body.company; 
-            grad.yearOfGraduation = req.body.yearOfGraduation; 
-
-            grad.save()
-                .then(() => res.json('grad updated!'))
-                .catch(err => res.status(400).json('Error: ' + err)); 
-            })
-            .catch(err => res.status(400).json('Error: ' + err)); 
+    Grad.findByIdAndUpdate(req.params.id, req.body, {new: true})
+        .then(grad => res.json(grad))
+        .catch(err => res.status(400).json('Error: ' + err));
     });
+
+// Lock Code its safe. So if two people were running two request at the same time.
 
 router.delete('/:id', async(req, res) => {
     console.log(req.params.id); 
     Grad.findById(req.params.id)
-        .then(grad => grad.remove().then(res.json({ success: 'true" '})))
-        .then(err => res.status(404).json('Not Found.' )); 
+        .then(grad => grad.remove().then(res.json({ success: 'true'})))
+        .catch(err => res.status(404).json('Not Found.' )); 
     console.log('deleted'); 
 })
 
